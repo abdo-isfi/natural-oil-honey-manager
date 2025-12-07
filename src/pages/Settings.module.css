@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  margin-bottom: var(--spacing-md);
+}
+
+.description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.dangerZone {
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.dangerHeader {
+  background-color: rgba(229, 62, 62, 0.1);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(229, 62, 62, 0.2);
+}
+
+.dangerHeader h3 {
+  color: var(--color-danger);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.dangerContent {
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF5F5;
+}
+
+.dangerContent p {
+  color: var(--color-text-dark);
+  font-weight: 500;
+}
