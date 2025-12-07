@@ -149,6 +149,19 @@ const Sales = () => {
     setEditingSale(null);
   };
 
+  const honeyProducts = useMemo(() => products.filter(p => p.category === 'Honey' && p.stock > 0), [products]);
+  const oilProducts = useMemo(() => products.filter(p => p.category === 'Oil' && p.stock > 0), [products]);
+
+  const handleQuickAdd = (e) => {
+    const productId = e.target.value;
+    if (!productId) return;
+    const product = products.find(p => (p._id || p.id) === productId);
+    if (product) {
+      addToCart(product);
+    }
+    e.target.value = ""; // Reset select
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -172,6 +185,20 @@ const Sales = () => {
       {activeTab === 'pos' ? (
         <div className={styles.posLayout}>
           <div className={styles.productSection}>
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+              <select className="input-field" onChange={handleQuickAdd} defaultValue="">
+                <option value="" disabled>Quick Add Honey...</option>
+                {honeyProducts.map(p => (
+                  <option key={p._id || p.id} value={p._id || p.id}>{p.name} - {p.sellingPrice} MAD</option>
+                ))}
+              </select>
+              <select className="input-field" onChange={handleQuickAdd} defaultValue="">
+                <option value="" disabled>Quick Add Oil...</option>
+                {oilProducts.map(p => (
+                  <option key={p._id || p.id} value={p._id || p.id}>{p.name} - {p.sellingPrice} MAD</option>
+                ))}
+              </select>
+            </div>
             <input
               type="text"
               placeholder="Search products..."
